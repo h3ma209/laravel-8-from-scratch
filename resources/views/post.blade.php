@@ -5,7 +5,9 @@
     </head>
     <body>
         
-        <a href="post/first-post">first</a>
-        <a href="post/second-post">second</a>
+        <article>
+            <?= $post ?>
+        </article>
+        <a href="/">Go back</a>
     </body>
 </html>
