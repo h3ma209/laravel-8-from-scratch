@@ -5,7 +5,10 @@
     </head>
     <body>
         
-        <a href="post/first-post">first</a>
-        <a href="post/second-post">second</a>
+        @foreach ($posts as $post)
+            <article>
+                <?= $post; ?>
+            </article>
+        @endforeach
     </body>
 </html>
