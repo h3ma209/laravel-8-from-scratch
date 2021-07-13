@@ -7,7 +7,8 @@
         
         @foreach ($posts as $post)
             <article>
-                <?= $post; ?>
+                <?= $post->title; ?>
+                <?= $post->date; ?>
             </article>
         @endforeach
     </body>

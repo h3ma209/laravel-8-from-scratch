@@ -7,6 +7,20 @@ use Illuminate\Support\Facades\File;
 
 class Post 
 {
+    public $title;
+    public $excerpt;
+    public $date;
+    public $body;
+
+    public function __construct($title, $excerpt, $date, $body)
+    {
+        $this->title = $title;
+        $this->date = $date;
+        $this->body = $body;
+        $this->excerpt = $excerpt;
+        
+    }
+
     public static function all()
     {
         $files = File::files(resource_path('posts/'));
@@ -23,6 +37,8 @@ class Post
         }
 
         return cache()->remember(`posts.{$slug}`,1,fn() =>file_get_contents($path));
+
+        // return static::all()->firstWhere('slug',$slug);
     }
 
     
