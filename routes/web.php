@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\File;
 Route::get('/', function () {
 
     return view('posts',[
-        'posts' => Post::all()
+        'posts' => Post::with('category')->get()
     ]);
 });
 
@@ -30,5 +31,11 @@ Route::get('/posts/{post}',function(Post $post){
     
     return view('post',[
         'post'=> $post
+    ]);
+});
+
+Route::get('categories/{category:name}',function(Category $category){
+    return view('posts',[
+        "posts"=> $category->posts
     ]);
 });
