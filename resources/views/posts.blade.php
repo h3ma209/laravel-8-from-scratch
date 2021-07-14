@@ -12,6 +12,7 @@
                 ">
                     <h1><?= $post->title ?></h1>
                 </a>
+                <h4><?= $post->category->name ?></h4>
                 <p><?= $post->body ?></p>
             
             </article>
