@@ -18,18 +18,18 @@ use Illuminate\Support\Facades\File;
 
 Route::get('/', function () {
 
-    $files = File::files(resource_path('posts'));
+    // $files = File::files(resource_path('posts'));
     
 
-    $posts = collect($files)->map(function($file){
-        $documents = YamlFrontMatter::parseFile($file);
-        return new Post(
-            $documents->title,
-            $documents->excerpt,
-            $documents->date,
-            $documents->body(),
-            );
-    });
+    // $posts = collect($files)->map(function($file){
+    //     $documents = YamlFrontMatter::parseFile($file);
+    //     return new Post(
+    //         $documents->title,
+    //         $documents->excerpt,
+    //         $documents->date,
+    //         $documents->body(),
+    //         );
+    // });
 
 
 
@@ -38,7 +38,7 @@ Route::get('/', function () {
 
 
     return view('posts',[
-        'posts' => $posts
+        'posts' => Post::all()
     ]);
 });
 
