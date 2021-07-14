@@ -7,8 +7,13 @@
         
         @foreach ($posts as $post)
             <article>
-                <?= $post->title; ?>
-                <?= $post->date; ?>
+                <a href="
+                /posts/{{$post->id}}
+                ">
+                    <h1><?= $post->title ?></h1>
+                </a>
+                <p><?= $post->body ?></p>
+            
             </article>
         @endforeach
     </body>

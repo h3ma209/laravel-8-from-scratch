@@ -5,6 +5,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,35 +19,16 @@ use Illuminate\Support\Facades\File;
 
 Route::get('/', function () {
 
-    // $files = File::files(resource_path('posts'));
-    
-
-    // $posts = collect($files)->map(function($file){
-    //     $documents = YamlFrontMatter::parseFile($file);
-    //     return new Post(
-    //         $documents->title,
-    //         $documents->excerpt,
-    //         $documents->date,
-    //         $documents->body(),
-    //         );
-    // });
-
-
-
-    //ddd($posts);
-    
-
-
     return view('posts',[
         'posts' => Post::all()
     ]);
 });
 
 
-Route::get('/post/{post}',function($slug){
+Route::get('/posts/{post}',function($id){
 
-    $post = Post::find($slug);
+    
     return view('post',[
-        'post'=> $post,
+        'post'=> Post::findOrFail($id),
     ]);
 });
