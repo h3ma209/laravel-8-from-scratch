@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
@@ -21,14 +22,19 @@ use Illuminate\Support\Facades\File;
 Route::get('/', function () {
 
     return view('posts',[
-        'posts' => Post::with('category')->get()
+        'posts' => Post::latest()->with('category','user')->get()
     ]);
 });
 
 
-Route::get('/posts/{post}',function(Post $post){
+Route::get('/users/{user}',function(User $user){ 
+    //dd($user->posts);
+    return view('posts',[
+        'posts'=> $user->posts
+    ]);
+});
 
-    
+Route::get('/posts/{post}',function(Post $post){ 
     return view('post',[
         'post'=> $post
     ]);
