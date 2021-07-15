@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\File;
 Route::get('/', function () {
 
     return view('posts',[
-        'posts' => Post::latest()->with('category','user')->get()
+        'posts' => Post::latest()->get()
     ]);
 });
 
