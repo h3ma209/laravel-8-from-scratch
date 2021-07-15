@@ -20,10 +20,20 @@ use Illuminate\Support\Facades\File;
 */
 
 Route::get('/', function () {
+    
+    $posts = Post::latest();
+
+    if(request('search')){
+        $posts
+        ->where("title", 'like','%' .request("search")."%")
+        ->orWhere("body", 'like','%' .request("search")."%");
+    }
 
     return view('posts',[
-        'posts' => Post::latest()->get()
+        "posts" => $posts->get(),
+        "categories" => Category::all()
     ]);
+    
 });
 
 
@@ -45,3 +55,4 @@ Route::get('categories/{category:name}',function(Category $category){
         "posts"=> $category->posts
     ]);
 });
+
