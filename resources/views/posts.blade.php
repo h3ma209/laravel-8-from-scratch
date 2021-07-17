@@ -19,7 +19,7 @@
         </form>
         
         
-
+        {{$posts->links("pagination::bootstrap-4")}}
         @foreach ($posts as $post)
             <article>
                 <a href="

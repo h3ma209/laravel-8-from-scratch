@@ -14,8 +14,9 @@ class PostController extends Controller
         
         // dd(request(["search"]));
         return view('posts', [
-            "posts" => Post::latest()->filter(request(["search",'category','user']))->get(),
-            "categories" => Category::all()
+            "posts" => Post::latest()->filter(request(["search",'category','user']))
+            ->paginate(4),
+            
         ]);
     }
     public function show(Post $post)
