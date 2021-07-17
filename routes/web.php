@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', [PostController::class,'index']);
+Route::get('/', [PostController::class,'index'])->name('home');
 
 
 Route::get('/users/{user}',function(User $user){ 
@@ -39,5 +40,6 @@ Route::get('categories/{category:name}',function(Category $category){
 });
 
 
-Route::get('register', [RegisterController::class, "create"]);
-Route::post('register', [RegisterController::class, "store"]);
+Route::get('register', [RegisterController::class, "create"])->middleware("guest");
+Route::post('register', [RegisterController::class, "store"])->middleware("guest");
+Route::post("logout",[SessionController::class, "destroy"]);
