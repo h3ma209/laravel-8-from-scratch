@@ -7,6 +7,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,6 @@ Route::get('categories/{category:name}',function(Category $category){
     ]);
 });
 
+
+Route::get('register', [RegisterController::class, "create"]);
+Route::post('register', [RegisterController::class, "store"]);
