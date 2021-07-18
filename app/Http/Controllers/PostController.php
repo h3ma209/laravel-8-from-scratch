@@ -21,8 +21,10 @@ class PostController extends Controller
     }
     public function show(Post $post)
     {
+        //ddd($post->comments);
         return view('post', [
-            'post' => $post
+            'post' => $post,
+            'comments' => $post->comments
         ]);
     }
 
